@@ -1,0 +1,21 @@
+server:
+  port: ${SERVER_PORT:9001}
+spring:
+  application:
+    name: config
+  cloud:
+    config:
+      server:
+        git:
+          uri: ${GIT_URL:https://github.com:443/wogud109/subride-config.git}
+          username: ${GIT_USERNAME:kimjh21}
+          password: ${GIT_TOKEN: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}
+          #password: ${GIT_PASSWORD:passw0rd}
+          search-paths:                      #base directory to search profiles
+            - 'common'            #공통설정
+            - '{application}'     #spring.application.name으로 대체됨
+          default-label: ${GIT_BRANCH:main}      #git branch
+encrypt:
+  #openssl rand -base64 32
+  #주의) github 푸시 시 보안 위반 경고로 푸시 안됨-에러 메시지에 있는 URL을 클릭하여 허용하거나, ENCRYPT_KEY환경변수를 셋팅하면 됨
+  key: ${ENCRYPT_KEY:CL4cboqlIweOqt93wjzZi/qjCxcSOYAMgzdKiy6cG2Y=}
